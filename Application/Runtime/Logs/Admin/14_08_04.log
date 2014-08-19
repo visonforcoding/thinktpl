@@ -1,0 +1,18 @@
+[ 2014-08-04T20:19:28+08:00 ] 192.168.0.105 /sb-admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
+[ 2014-08-04T20:19:31+08:00 ] 192.168.0.105 /sb-admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
+[ 2014-08-04T20:19:32+08:00 ] 192.168.0.105 /sb-admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
+[ 2014-08-04T20:19:34+08:00 ] 192.168.0.105 /sb-admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
+[ 2014-08-04T20:19:35+08:00 ] 192.168.0.105 /sb-admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
+[ 2014-08-04T20:24:02+08:00 ] 192.168.0.105 /sb-admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+

@@ -1,0 +1,39 @@
+<extend name="Layout:layout" />
+<block name="crumbs">
+    <h1 class="page-title">关于</h1>
+    <ul class="breadcrumb">
+        <li><a href="index.html">首页</a> </li>
+        <li><a href="users.html">内容管理</a> </li>
+        <li class="active">关于</li>
+    </ul>
+</block>
+<block name="main">
+    <form id="tab" action="{:U('Admin/submit/formSubmit')}" method="post">
+        <input type="hidden" name="action" value="edit"/>
+        <input type="hidden" name="classname" value="About" />
+        <input type="hidden" name="setreferer" value="{$setreferer}" />
+        <input type="hidden" name="id" value="1" />
+        <div class="form-group">
+            <label>介绍:</label>
+            <script class="editor" id="info" name="info" type="text/plain">
+                {$Rs['info']}
+            </script>
+            <script type="text/javascript">
+                var editor = UE.getEditor('info');
+            </script>
+        </div>
+        <div class="form-group">
+            <label>联系:</label>
+            <script class="editor" id="contact" name="contact" type="text/plain">
+                {$Rs['contact']}
+            </script>
+            <script type="text/javascript">
+                var editor = UE.getEditor('contact');
+            </script>
+        </div>
+        <div class="btn-toolbar list-toolbar" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> 确定</button>
+            <a href="#myModal" data-toggle="modal" class="btn btn-danger">重置</a>
+        </div>
+    </form>
+</block>

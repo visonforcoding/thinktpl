@@ -1,0 +1,98 @@
+<extend name="Layout:layout" />
+<block name="js">
+    <script>
+        $(function() {
+
+        });
+        function del(classname, id) {
+            $.messager.model = {
+                cancel: {text: "取消", classed: 'btn-error'},
+                ok: {text: "删除", classed: 'btn-danger'}
+            };
+            $.messager.confirm("删除确认框", "确定要删除该记录吗？", function() {
+                  $.ajax({
+                      url:'/sb-admin.php/submit/del.html',
+                      data:{'classname':classname,'id':id},
+                      dataType:'json',
+                      type:'post',
+                      success:function(msg){
+                        alert(msg.content);
+                        window.location.reload();
+                      }
+                  });
+            });
+        };
+    </script>
+</block>
+<block name="crumbs">
+    <h1 class="page-title">移动应用</h1>
+    <ul class="breadcrumb">
+        <li><a href="index.html">主页</a> </li>
+        <li><a href="users.html">内容管理</a> </li>
+        <li class="active">移动应用</li>
+    </ul>
+</block>
+<block name="main">
+    <div class="btn-toolbar list-toolbar">
+        <a class="btn btn-primary" href="{:U('Admin/app/add')}"><i class="fa fa-plus"></i>添加应用</a>
+        <button class="btn btn-default">导入</button>
+        <button class="btn btn-default">导出</button>
+        <div class="btn-group">
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>应用名</th>
+                <th>应用类别</th>
+                <th>大小</th>
+                <th>版本</th>
+                <th>操作系统</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th style="width: 3.5em;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name='Rs' id='v' key='k'>
+            <tr>
+                <td>{$k}</td>
+                <td>{$v.name}</td>
+                <td>{$v.category}</td>
+                <td>{$v.size}</td>
+                <td>{$v.version}</td>
+                <td>{$v.os}</td>
+                <td>{$v.ctime}</td>
+                <td>{$v.updatetime}</td>
+                <td>
+                    <a href="__APP__/app/add/action/edit/id/{$v.id}.html"><i class="fa fa-pencil"></i></a>
+                    <a href="#" onclick='del("App", "{$v.id}")'><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <ul class="pagination">
+        {$show}
+    </ul>
+
+    <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Delete Confirmation</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete the user?<br>This cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,121 @@
+<extend name="Layout:layout" />
+
+<block name="crumbs">
+    <h1 class="page-title">添加应用</h1>
+    <ul class="breadcrumb">
+        <li><a href="index.html">主页</a> </li>
+        <li><a href="users.html">内容管理</a> </li>
+        <li class="active">添加应用</li>
+    </ul>
+</block>
+<block name="main">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">应用信息</a></li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-4">
+            <br>
+            <form id="tab" action="{:U('Admin/submit/formSubmit')}" method="post">
+                <input type="hidden" name="action" value="{$action}"/>
+                <input type="hidden" name="classname" value="{$classname}" />
+                <input type="hidden" name="setreferer" value="{$setreferer}" />
+                <input type="hidden" name="id" value="{$id}" />
+                <div class="form-group">
+                    <label>应用名称</label>
+                    <input type="text" name="name" value="{$Rs.name}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>应用类别</label>
+                    <input type="text" name="category" value="{$Rs.category}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>应用LOGO</label>
+                    <div id="tdimgcover" style="display: block">
+                        <div class="showImg" style="height:163px;">
+                            <div id="disimgcover" class="showImgC">
+                                {$Rs['fcover']}
+                            </div>
+                            <div id="btnimgcover">
+                                <input type="button" style="width: 133px;" class="btn btn-primary" id="image" value="上传图片" />
+                            </div>
+                            <input type="hidden" name="cover" id="litpic" value="{$Rs['cover']}"  />
+                        </div>
+                        <script id="myeditor"></script> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>应用大小</label>
+                    <input type="text" name="size" value="{$Rs.size}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>应用版本</label>
+                    <input type="text" name="version" value="{$Rs.version}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>操作系统</label>
+                    <input type="text" name="os" value="{$Rs.os}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>标识符</label>
+                    <input type="text" name="flag" value="{$Rs.flag}" class="form-control"><span class="warning-info">(全英文输入，确定后不要修改，保证产品地址的确定！)</span>
+                </div>
+                <div class="form-group">
+                    <label>二维码</label>
+                    <div id="tdimgcover" style="display: block">
+                        <div class="showImg" style="height:163px;">
+                            <div id="disWcode" class="showImgC">
+                                {$Rs['fwcode']}
+                            </div>
+                            <div id="btnimgcover">
+                                <input type="button" style="width: 133px;" class="btn btn-primary" id="codeShow" value="上传图片" />
+                            </div>
+                            <input type="hidden" name="wcode" id="wcode" value="{$Rs['wcode']}"  />
+                        </div>
+                        <script id="wcodeEditor"></script> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>介绍:</label>
+                    <script class="editor" id="info" name="info" type="text/plain">
+                        {$Rs['info']}
+                    </script>
+                    <script type="text/javascript">
+                        var editor = UE.getEditor('info');
+                    </script>
+                </div>
+                <div class="btn-toolbar list-toolbar">
+                    <button type="" class="btn btn-primary"><i class="fa fa-save"></i> 确定</button>
+                    <a href="#myModal" data-toggle="modal" class="btn btn-danger">重置</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Delete Confirmation</h3>
+                </div>
+                <div class="modal-body">
+
+                    <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete the user?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        /*图片上传*/
+        $(function() {
+            initImageUpload('myeditor', 'litpic', 'disimgcover', 'image');
+            initImageUpload('wcodeEditor', 'wcode', 'disWcode', 'codeShow');
+        });
+    </script>
+</block>
